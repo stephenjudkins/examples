@@ -6,7 +6,8 @@ scalaVersion := "2.10.4"
 
 resolvers ++= Seq(
   "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
-  "releases"  at "http://oss.sonatype.org/content/repositories/releases"
+  "releases"  at "http://oss.sonatype.org/content/repositories/releases",
+  "bintray/non" at "http://dl.bintray.com/non/maven"
 )
 
 libraryDependencies ++= Seq(
@@ -21,7 +22,6 @@ libraryDependencies ++= Seq(
   "org.specs2"     %% "specs2"     % "1.13"   % "test"
 )
 
-
-
+addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.5.2")
 
 

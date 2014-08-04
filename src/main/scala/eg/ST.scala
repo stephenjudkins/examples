@@ -14,14 +14,14 @@ object ST extends App {
 
   // In order to run an action, you need to construct a Forall, which is awkward.
   // Note that it fixes the return type.
-  val forall = new Forall[({ type λ[σ] = ST[σ, Int] })#λ] { def apply[S] = a }
+  val forall = new Forall[ST[?, Int]] { def apply[S] = a }
 
   // We can abstract out the lambda type if we want to
-  type ForallST[A] = Forall[({ type λ[σ] = ST[σ, A] })#λ]
+  type ForallST[A] = Forall[ST[?, A]]
   val forall2 = new ForallST[Int] { def apply[S] = a }
 
   // They should be equivalent (N.B. might crash presentation compiler but does work)
-  implicitly[Forall[({ type λ[σ] = ST[σ, Int] })#λ] =:= ForallST[Int]]
+  implicitly[Forall[ST[?, Int]] =:= ForallST[Int]]
 
   // this is pure
   val x0 = runST(forall)

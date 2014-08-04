@@ -20,7 +20,7 @@ object FreeMonad extends App {
 
   // The instance is not inferrable
   implicit val monadTerminalIO: Monad[TerminalIO] =
-    Free.freeMonad[({type λ[α] = Coyoneda[TerminalOp, α]})#λ]
+    Free.freeMonad[Coyoneda[TerminalOp, ?]]
 
   // Smart constructors
   def readLine: TerminalIO[String] = Free.liftFC(ReadLine)
